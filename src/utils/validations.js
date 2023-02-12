@@ -1,107 +1,38 @@
 const { check } = require('express-validator')
 
 
-const validation_account = [
-    check('cuenta')
-        .isNumeric()
-        .withMessage("The account must be numeric")
-        .isLength({ min: 9, max: 9 })
-        .withMessage("The account must has nine digits")
-]
+const validar_paquete = [
+    check('descripcionPaquete')
+        .isString()
+        .withMessage("El parametro debe ser string")
+        .notEmpty()
+        .withMessage("El parametro es requerido"),
+    check('categoriaPaquete')
+        .isString()
+        .withMessage("El parametro debe ser string")
+        .notEmpty()
+        .withMessage("El parametro es requerido"),
+    check('ciudadOrigen')
+        .isString()
+        .withMessage("El parametro debe ser string")
+        .notEmpty()
+        .withMessage("El parametro es requerido"),
+    check('direccionOrigen')
+        .isString()
+        .withMessage("El parametro debe ser string")
+        .notEmpty()
+        .withMessage("El parametro es requerido"),
+    check('ciudadDestino')
+        .isString()
+        .withMessage("El parametro debe ser string")
+        .notEmpty()
+        .withMessage("El parametro es requerido"),
+    check('direccionDestino')
+        .isString()
+        .withMessage("El parametro debe ser string")
+        .notEmpty()
+        .withMessage("El parametro es requerido")
 
-
-const validation_user_name = [
-    check('nombre_usuario')
-        .isString()
-        .withMessage("The name must be string")
-        .notEmpty()
-        .withMessage("The name is required"),
-    check('codigo')
-        .isString()
-        .withMessage("The code must be string")
-        .notEmpty()
-        .withMessage("The code is required")
-]
-
-const validation_description = [
-    check('descripcion_evento')
-        .isString()
-        .withMessage("The description must be string")
-        .notEmpty()
-        .withMessage("The description is required"),
-    check('codigo')
-        .isString()
-        .withMessage("The code must be string")
-        .notEmpty()
-        .withMessage("The code is required")
-]
-
-const validation_phone = [
-    check('celular_radicado')
-        .isNumeric()
-        .withMessage("The cell phone must be numeric")
-        .notEmpty()
-        .withMessage("The cell phone is required")
-        .isLength({ min: 10, max: 10 })
-        .withMessage("The cell phone must contain ten digits"),
-    check('codigo')
-        .isString()
-        .withMessage("The code must be string")
-        .notEmpty()
-        .withMessage("The code is required")
-]
-
-const validation_report = [
-    check('codigo')
-        .isString()
-        .withMessage("The code must be string")
-        .notEmpty()
-        .withMessage("The code is required"),
-    check('cuenta')
-        .isNumeric()
-        .withMessage("The account must be numeric")
-        .isLength({ min: 9, max: 9 })
-        .withMessage("The account must has nine digits"),
-    check('nombre_usuario')
-        .isString()
-        .withMessage("The name must be string")
-        .notEmpty()
-        .withMessage("The name is required"),
-    check('descripcion_evento')
-        .isString()
-        .withMessage("The description must be string")
-        .notEmpty()
-        .withMessage("The description is required"),
-    check('celular_radicado')
-        .isNumeric()
-        .withMessage("The cell phone must be numeric")
-        .notEmpty()
-        .withMessage("The cell phone is required")
-        .isLength({ min: 10, max: 10 })
-        .withMessage("The cell phone must contain ten digits")
-]
-
-const validation_cell_phone = [
-    check('celular')
-        .isNumeric()
-        .withMessage("The cell phone must be numeric")
-        .notEmpty()
-        .withMessage("The cell phone is required")
-        .isLength({ min: 1, max: 10 })
-        .withMessage("The cell phone must contain ten digits")
-]
-
-const validation_niu_address = [
-    check('codigo')
-        .isString()
-        .withMessage("The code must be string")
-        .notEmpty()
-        .withMessage("The code is required"),
-    check('cuenta')
-        .isNumeric()
-        .withMessage("The account must be numeric")
-        .isLength({ min: 9, max: 9 })
-        .withMessage("The account must has nine digits")
 ]
 
 const validar_ingreso = [
@@ -145,14 +76,25 @@ const validar_registro = [
 
 ]
 
+const validar_calificacion = [
+    check('calificacion')
+        .isNumeric()
+        .withMessage("La calificación debe ser númerico")
+        .notEmpty()
+        .withMessage("El calificación es obligatoria")
+        .isLength({ min: 1, max: 10 })
+        .withMessage("La califiación debe estar entre 1 y 5"),
+    check('idSolicitud')
+        .isString()
+        .withMessage("El parametro debe ser string")
+        .notEmpty()
+        .withMessage("El parametro es requerido"),
+
+]
+
 module.exports = {
-    validation_account,
-    validation_user_name,
-    validation_description,
-    validation_phone,
-    validation_report,
-    validation_cell_phone,
-    validation_niu_address,
+    validar_paquete,
     validar_ingreso,
-    validar_registro
+    validar_registro,
+    validar_calificacion
 }
